@@ -23,15 +23,19 @@ public class LocationComponent {
     }
 
     public void draw(Canvas canvas) {
-//        Borders
         Paint paint = new Paint();
-        paint.setColor(Color.YELLOW);
+//        Background
+        paint.setColor(Color.WHITE);
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawRect(x1, y1, x2, y2, paint);
+//        Borders
+        paint.setColor(Color.BLACK);
         paint.setStrokeWidth(5);
         paint.setStyle(Paint.Style.STROKE);
         canvas.drawRect(x1, y1, x2, y2, paint);
 //        Titles
-        paint.setColor(Color.WHITE);
-        paint.setTextSize(24);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(28);
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setStyle(Paint.Style.FILL);
         paint.setAntiAlias(true);

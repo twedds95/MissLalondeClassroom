@@ -44,7 +44,7 @@ public class StudentComponent extends View {
         x = random.nextInt(screenWidth - w) + w;
         y = random.nextInt(screenHeight - w) + w;
 
-        mNamePosition = new Rect(x - w, y - h, x + w, y + h);
+        mNamePosition = new Rect(x - w, y - h, x + w, y + h/2);
         mNameRegion = new Region();
         mNameRegion.set(mNamePosition);
         canImageMove = false;
@@ -54,11 +54,20 @@ public class StudentComponent extends View {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         Paint paint = new Paint();
+//        Background
         paint.setColor(Color.WHITE);
-        canvas.drawRoundRect(
-                new RectF(mNamePosition.left, mNamePosition.top,
-                        mNamePosition.right, mNamePosition.bottom),
-                50, 50, paint);
+        canvas.drawRect(
+                mNamePosition.left, mNamePosition.top,
+                mNamePosition.right, mNamePosition.bottom,
+                paint);
+//        Borders
+        paint.setColor(Color.BLACK);
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawRect(
+                mNamePosition.left, mNamePosition.top,
+                mNamePosition.right, mNamePosition.bottom,
+                paint);
+//        Name
         paint.setColor(Color.BLACK);
         paint.setTextSize(18);
         paint.setTextAlign(Paint.Align.CENTER);
@@ -96,7 +105,7 @@ public class StudentComponent extends View {
                                 mNamePosition.left = mNamePosition.left + deltaX;
                                 mNamePosition.top = mNamePosition.top + deltaY;
                                 mNamePosition.right = mNamePosition.left + 2 * w;
-                                mNamePosition.bottom = mNamePosition.top + 2 * h;
+                                mNamePosition.bottom = mNamePosition.top + 3 * h / 2;
                                 mNameRegion.set(mNamePosition);
                                 x = positionX;
                                 y = positionY;
